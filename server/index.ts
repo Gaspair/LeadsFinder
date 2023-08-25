@@ -1,31 +1,41 @@
-const express = require("express");
-const cors = require("cors");
-const axios = require("axios");
-require("dotenv").config();
+import express, { Request, Response } from "express";
+import cors from "cors";
+import axios from "axios";
+import "dotenv/config";
 
 const app = express();
 
 app.use(cors());
 
-app.get("/search-places", async (req, res) => {
+interface Place {
+  name: string;
+  formatted_address: string;
+  place_id: string;
+}
+
+app.get("/search-places", async (req: Request, res: Response) => {
   const { location, name } = req.query;
+
+  if (!process.env.API_KEY) {
+    return res.status(500).json({ error: "API key not provided." });
+  }
 
   const placesAPIUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(
     name + " in " + location
   )}&key=${encodeURIComponent(process.env.API_KEY)}`;
 
-  const detailsAPIUrl = (place_id) => {
-    return `https://maps.googleapis.com/maps/api/place/details/json?fields=name%2Cwebsite%2Crating%2Cformatted_phone_number%2Cuser_ratings_total&place_id=${place_id}&key=${encodeURIComponent(
-      process.env.API_KEY
+  const detailsAPIUrl = (place_id: string) => {
+    return `https://maps.googleapis.com/maps/api/place/details/json?fields=name%2Cwebsite%2Crating%2Cformatted_phone_number%2Cuser_ratings_total%2Cformatted_address&place_id=${place_id}&key=${encodeURIComponent(
+      process.env.API_KEY as string
     )}`;
   };
 
   try {
     const placesAPIResponse = await axios.get(placesAPIUrl);
-    const rawQuery = placesAPIResponse.data.results;
+    const rawQuery: Place[] = placesAPIResponse.data.results;
 
     if (rawQuery != null) {
-      const placesArray = [];
+      const placesArray: any[] = [];
       try {
         await Promise.all(
           rawQuery.map(async (element) => {
@@ -47,7 +57,7 @@ app.get("/search-places", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT: number = process.env.PORT ? parseInt(process.env.PORT, 10) : 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

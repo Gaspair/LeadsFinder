@@ -18,6 +18,7 @@ export const searchPlaces = async (
         formatted_phone_number: object.formatted_phone_number,
         rating: object.rating,
         user_ratings_total: object.user_ratings_total,
+        formatted_address: object.formatted_address,
       }));
     } else {
       return [];

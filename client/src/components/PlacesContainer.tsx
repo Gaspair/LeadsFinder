@@ -21,6 +21,10 @@ const PlacesContainer: React.FC<PlacesContainerProps> = ({ places }) => {
             <span className="text-black font-semibold">Phone Number: </span>
             {place.formatted_phone_number || "phone number"}
           </p>
+          <p className="text-blue-600">
+            <span className="text-black font-semibold">Address: </span>
+            {place.formatted_address || "address"}
+          </p>
           <div className="text-blue-600">
             <span className="text-black font-semibold">Review Rating: </span>
             {place.rating || "rating"}

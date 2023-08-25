@@ -4,6 +4,7 @@ export interface Place {
   formatted_phone_number: string;
   rating: string;
   user_ratings_total: string;
+  formatted_address: string;
 }
 
 export interface PlacesContainerProps {
