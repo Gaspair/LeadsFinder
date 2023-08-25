@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import PlacesContainer from "./components/PlacesContainer";
 import { searchPlaces } from "./utils/Api";
+import { Place } from "./utils/types";
 
 const App: React.FC = () => {
   const [searchResults, setSearchResults] = useState<Place[]>([]);
