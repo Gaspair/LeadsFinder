@@ -12,7 +12,7 @@ app.get("/search-places", async (req, res) => {
 
   const apiUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(
     name + " in " + location
-  )}&key=${process.env.API_KEY}`;
+  )}&key=${encodeURIComponent(process.env.API_KEY)}`;
 
   try {
     const response = await axios.get(apiUrl);
