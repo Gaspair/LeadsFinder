@@ -10,6 +10,7 @@ const App: React.FC = () => {
 
   const handleSearch = async (location: string, name: string) => {
     const places = await searchPlaces(location, name);
+    console.log(places);
     setSearchResults(places);
   };
 

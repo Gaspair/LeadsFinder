@@ -11,15 +11,13 @@ export const searchPlaces = async (
 
   try {
     const response = await axios.get(apiUrl);
-    if (response != null) {
-      console.log(response);
-
+    if (response.data != null) {
       return response.data.map((object: Place) => ({
         name: object.name,
         website: object.website,
-        phone: object.formatted_phone_number,
-        type: object.type,
-        reviews: object.reviews,
+        formatted_phone_number: object.formatted_phone_number,
+        rating: object.rating,
+        user_ratings_total: object.user_ratings_total,
       }));
     } else {
       return [];

@@ -15,7 +15,7 @@ app.get("/search-places", async (req, res) => {
   )}&key=${encodeURIComponent(process.env.API_KEY)}`;
 
   const detailsAPIUrl = (place_id) => {
-    return `https://maps.googleapis.com/maps/api/place/details/json?fields=name%2Cwebsite%2Crating%2Cformatted_phone_number&place_id=${place_id}&key=${encodeURIComponent(
+    return `https://maps.googleapis.com/maps/api/place/details/json?fields=name%2Cwebsite%2Crating%2Cformatted_phone_number%2Cuser_ratings_total&place_id=${place_id}&key=${encodeURIComponent(
       process.env.API_KEY
     )}`;
   };
