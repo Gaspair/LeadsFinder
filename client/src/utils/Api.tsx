@@ -1,10 +1,5 @@
-// utils/api.ts
 import axios from "axios";
-
-interface Place {
-  name: string;
-  formatted_address: string;
-}
+import { Place } from "./types";
 
 export const searchPlaces = async (
   location: string,
@@ -16,11 +11,14 @@ export const searchPlaces = async (
 
   try {
     const response = await axios.get(apiUrl);
-    if (response.data.results) {
-      console.log(response);
-      return response.data.results.map((result: any) => ({
-        name: result.name,
-        formatted_address: result.formatted_address,
+    if (response.data != null) {
+      return response.data.map((object: Place) => ({
+        name: object.name,
+        website: object.website,
+        formatted_phone_number: object.formatted_phone_number,
+        rating: object.rating,
+        user_ratings_total: object.user_ratings_total,
+        formatted_address: object.formatted_address,
       }));
     } else {
       return [];
