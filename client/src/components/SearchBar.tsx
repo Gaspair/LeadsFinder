@@ -14,7 +14,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center top-2 left-2 absolute">
       <input
         type="text"
         placeholder="Location..."

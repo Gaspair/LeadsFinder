@@ -5,7 +5,7 @@ export const searchPlaces = async (
   location: string,
   name: string
 ): Promise<Place[]> => {
-  const apiUrl = `http://localhost:3001/search-places?location=${encodeURIComponent(
+  const apiUrl = `https://leads-finder.onrender.com/search-places?location=${encodeURIComponent(
     location
   )}&name=${encodeURIComponent(name)}`;
 
