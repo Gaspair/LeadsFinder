@@ -4,7 +4,7 @@ import { PlacesContainerProps } from "../utils/types";
 
 const PlacesContainer: React.FC<PlacesContainerProps> = ({ places }) => {
   return (
-    <div className="mt-4">
+    <div className="mt-6">
       {places.map((place, index) => (
         <div key={index} className="bg-gray-100 p-4 mb-2 rounded-md">
           <h2 className="text-lg text-blue-600 font-semibold">
@@ -35,6 +35,15 @@ const PlacesContainer: React.FC<PlacesContainerProps> = ({ places }) => {
             </span>
             {place.user_ratings_total || "number of reviews"}
           </div>
+          <label htmlFor="addButton" className="text-red-600">
+            Add to database
+          </label>
+          <input
+            type="checkbox"
+            name="addButton"
+            id="1"
+            className="ml-4 cursor-pointer"
+          />
         </div>
       ))}
     </div>
